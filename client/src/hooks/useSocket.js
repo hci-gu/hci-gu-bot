@@ -4,7 +4,7 @@ const API_URL = import.meta.env.VITE_API_URL
 
 const useSocket = () => {
   const socket = useMemo(() => {
-    const s = io(API_URL, { transports: ['websocket'] })
+    const s = io(`${API_URL}`, { transports: ['websocket'] })
     s.on('connect', () => {
       console.log('socket connected')
       socket.emit('client-init')

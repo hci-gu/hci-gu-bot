@@ -47,6 +47,15 @@ const Trackpad = () => {
     }, 5)
   )
 
+  useEffect(() => {
+    const onMouseDown = () => emit('click')
+
+    document.addEventListener('mousedown', onMouseDown)
+    return () => {
+      document.removeEventListener('mousedown', onMouseDown)
+    }
+  }, [emit])
+
   return (
     <Container onMouseMove={onMove}>
       <span>

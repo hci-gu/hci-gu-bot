@@ -28,6 +28,12 @@ io.on('connection', (socket) => {
     }
   })
 
+  socket.on('click', (data) => {
+    if (serverConnection) {
+      serverConnection.emit('click', data)
+    }
+  })
+
   socket.on('key', (data) => {
     if (serverConnection) {
       serverConnection.emit('key', data)

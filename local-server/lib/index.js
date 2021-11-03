@@ -11,6 +11,10 @@ socket.on('mouse', (pos) => {
   robot.move(pos)
 })
 
+socket.on('click', () => {
+  robot.click()
+})
+
 socket.on('key', (pos) => {
   robot.key(pos)
 })

@@ -16,6 +16,7 @@ const moveAcrossScreen = () => {
 }
 
 module.exports = {
+  click: () => robot.mouseClick(),
   key: (key) => {
     robot.keyTap(key)
   },
