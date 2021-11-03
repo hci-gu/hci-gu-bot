@@ -7,9 +7,11 @@ import 'simple-keyboard/build/css/index.css'
 const Container = styled.div``
 
 const Keyboard = () => {
-  // const [, emit] = useSocket()
+  const [, emit] = useSocket()
   useEffect(() => {
-    const onKey = (e) => console.log(e)
+    const onKey = (e) => {
+      emit('key', e)
+    }
 
     const keyboard = new SimpleKeyBoard({
       physicalKeyboardHighlight: true,

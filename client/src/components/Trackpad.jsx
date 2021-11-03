@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
+import useSocket from '../hooks/useSocket'
 
 const Container = styled.div`
   margin-top: 1rem;
@@ -34,6 +35,7 @@ const debounce = (func, delay) => {
 }
 
 const Trackpad = () => {
+  const [, emit] = useSocket()
   const [pos, setPos] = useState({ x: 0, y: 0 })
   const onMove = useMemo(() =>
     debounce((e) => {
@@ -41,6 +43,7 @@ const Trackpad = () => {
       var x = (e.clientX - bounds.left) / bounds.width
       var y = (e.clientY - bounds.top) / bounds.height
       setPos({ x, y })
+      emit('mouse', { x, y })
     }, 5)
   )
 

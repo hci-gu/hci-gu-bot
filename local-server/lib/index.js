@@ -1,20 +1,16 @@
-const express = require('express')
-const bodyParser = require('body-parser')
-const cors = require('cors')
-const app = express()
-const http = require('http').Server(app)
-const io = require('socket.io-client')(http, {
-  cors: {
-    origin: '*',
-    methods: ['GET', 'POST'],
-  },
-})
-
+const { io } = require('socket.io-client')
+const socket = io('http://localhost:4000')
 const robot = require('./robot')
 
-app.use(cors())
-app.use(bodyParser.json({ limit: '10mb', extended: true }))
+socket.on('connect', () => {
+  console.log('Im connected!')
+  socket.emit('server-init')
+})
 
-http.listen(4000)
+socket.on('mouse', (pos) => {
+  robot.move(pos)
+})
 
-app.get('/', (_, res) => res.send('hello'))
+socket.on('key', (pos) => {
+  robot.key(pos)
+})
