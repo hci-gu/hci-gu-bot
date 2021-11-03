@@ -3,7 +3,7 @@ const bodyParser = require('body-parser')
 const cors = require('cors')
 const app = express()
 const http = require('http').Server(app)
-const io = require('socket.io-client')(http, {
+const io = require('socket.io')(http, {
   cors: {
     origin: '*',
     methods: ['GET', 'POST'],
